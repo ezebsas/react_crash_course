@@ -5,6 +5,7 @@ import Header from './components/layout/Header.js';
 import './App.css';
 import Todos from './components/Todos.js';
 import AddTodo from './components/AddTodo.js';
+import About from './components/pages/About.js';
 import {v4 as uuid} from 'uuid';
 
 class App extends Component {
@@ -58,9 +59,14 @@ class App extends Component {
         <div className="App">
           <div className="container">
             <Header />
-            <AddTodo addTodo={this.addTodo} />
-            <Todos todos={this.state.todos} markComplete={this.markComplete}
+            <Route exact path="/" render= {props => (
+              <React.Fragment>
+                <AddTodo addTodo={this.addTodo} />
+                <Todos todos={this.state.todos} markComplete={this.markComplete}
               delTodo={this.delTodo} />
+              </React.Fragment>
+            )} />
+            <Route path="/about" component={About} />
           </div>
         </div>
       </Router>
